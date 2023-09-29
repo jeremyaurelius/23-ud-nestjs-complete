@@ -1,7 +1,7 @@
-# List all messages
+### List all messages
 GET http://localhost:3000/messages
 
-# Create a new message
+### Create a new message
 POST http://localhost:3000/messages
 content-type: application/json
 
@@ -9,5 +9,5 @@ content-type: application/json
   "content": "Hola. Me llamo Max."
 }
 
-#Get a message
+### Get a message
 GET http://localhost:3000/messages/1
