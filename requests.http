@@ -11,3 +11,7 @@ content-type: application/json
 
 ### Get a message
 GET http://localhost:3000/messages/1
+
+
+### Get a non-existent message
+GET http://localhost:3000/messages/5
