@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 import { User } from './users/user.entity';
+import { Report } from './reports/report.entity';
 
 @Module({
   imports: [
@@ -13,8 +14,8 @@ import { User } from './users/user.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite', // TypeORM creates db.sqlite file automatically
-      entities: [User],
-      synchronize: true,
+      entities: [User, Report],
+      synchronize: true, // only for development — automatically updates DB based on the structure of the entities without migrations
     }),
   ],
   controllers: [AppController],
