@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -9,6 +10,7 @@ export class User {
   email: string;
 
   @Column()
+  @Exclude() // exclude password when serializing to JSON when used with ClassSerializerInterceptor on controller routes
   password: string;
 
   @AfterInsert()
