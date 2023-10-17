@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query, ClassSerializerInterceptor, UseInterceptors, Session, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query, ClassSerializerInterceptor, UseInterceptors, Session, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './model/user.entity';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthService } from './auth.service';
 import { SignInDto } from './dtos/sign-in.dto';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('auth')
 export class UsersController {
@@ -30,12 +31,14 @@ export class UsersController {
     return user;
   }
 
+  @UseGuards(AuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   @Get('/whoami')
   async whoAmI(@Session() session: SessionData): Promise<User> {
-    if (!session.userId) {
-      throw new UnauthorizedException('Not authenticated.');
-    }
+    // handled by guard
+    // if (!session.userId) {
+    //   throw new UnauthorizedException('Not authenticated.');
+    // }
     const user = await this.usersService.findOne(session.userId);
     if (!user) {
       throw new NotFoundException('User not found.')
@@ -43,12 +46,14 @@ export class UsersController {
     return user;
   }
 
+  @UseGuards(AuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   @Post('/sign-out')
   async signOut(@Session() session: SessionData): Promise<{ loggedOut: boolean }> {
-    if (!session.userId) {
-      throw new UnauthorizedException('Not authenticated.');
-    }
+    // handled by guard
+    // if (!session.userId) {
+    //   throw new UnauthorizedException('Not authenticated.');
+    // }
     session.userId = null;
     return {
       loggedOut: true
