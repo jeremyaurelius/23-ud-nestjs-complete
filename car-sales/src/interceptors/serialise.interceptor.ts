@@ -1,7 +1,10 @@
-import { CallHandler, ExecutionContext, NestInterceptor } from "@nestjs/common";
+import { CallHandler, ExecutionContext, NestInterceptor, UseInterceptors } from "@nestjs/common";
 import { ClassConstructor, plainToClass } from "class-transformer";
 import { Observable, map } from "rxjs";
-import { UserDto } from "src/users/dtos/user.dto";
+
+export function Serialize(dto: ClassConstructor<any>) {
+  return UseInterceptors(new SerializeInterceptor(dto))
+}
 
 // custom interceptor instead of ClassSerializerInterceptor such that we can
 // serialise based on different DTOs instead of having just one kind of serialisation
