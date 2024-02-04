@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from './model/user.entity';
+import { UserEntity } from './model/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dtos/create-user.dto';
 
@@ -9,7 +9,7 @@ export class UsersService {
   constructor(
     // inject a repository based on the User entity
     // The reason we need the @InjectRepository(User) decorator is because generics are not added in TS metadata
-    @InjectRepository(User) private repo: Repository<User>,
+    @InjectRepository(UserEntity) private repo: Repository<UserEntity>,
   ) {}
 
   /**
@@ -28,11 +28,11 @@ export class UsersService {
     return this.repo.findOneBy({ id });
   }
 
-  async find(email: string): Promise<User[]> {
+  async find(email: string): Promise<UserEntity[]> {
     return this.repo.find({ where: { email }});
   }
 
-  async update(id: number, attrs: Partial<User>) {
+  async update(id: number, attrs: Partial<UserEntity>) {
     // to be able to use save() such that we can trigger entity hooks, we first need to fetch the
     // user from the DB
     // however this is inefficient

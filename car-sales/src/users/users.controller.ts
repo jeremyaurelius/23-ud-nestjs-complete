@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query, UseInterceptors, Session, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
-import { User } from './model/user.entity';
+import { UserEntity } from './model/user.entity';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { AuthService } from './auth.service';
@@ -19,7 +19,7 @@ export class UsersController {
   // @UseInterceptors(ClassSerializerInterceptor)
   @UseInterceptors(SerializeInterceptor)
   @Post('/sign-up')
-  async signUp(@Body() body: CreateUserDto, @Session() session: SessionData): Promise<User> {
+  async signUp(@Body() body: CreateUserDto, @Session() session: SessionData): Promise<UserEntity> {
     const user = await this.authService.signUp(body);
     session.userId = user.id;
     return user;
@@ -28,7 +28,7 @@ export class UsersController {
   // @UseInterceptors(ClassSerializerInterceptor)
   @UseInterceptors(SerializeInterceptor)
   @Post('/sign-in')
-  async signIn(@Body() body: SignInDto, @Session() session: SessionData): Promise<User> {
+  async signIn(@Body() body: SignInDto, @Session() session: SessionData): Promise<UserEntity> {
     const user = await this.authService.signIn(body);
     session.userId = user.id;
     return user;
@@ -38,7 +38,7 @@ export class UsersController {
   // @UseInterceptors(ClassSerializerInterceptor)
   @UseInterceptors(SerializeInterceptor)
   @Get('/whoami')
-  async whoAmI(@Session() session: SessionData): Promise<User> {
+  async whoAmI(@Session() session: SessionData): Promise<UserEntity> {
     // handled by guard
     // if (!session.userId) {
     //   throw new UnauthorizedException('Not authenticated.');
