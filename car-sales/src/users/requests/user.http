@@ -2,7 +2,7 @@
 GET http://localhost:3000/auth/whoami
 
 ### Find a particular user with a given ID
-GET http://localhost:3000/auth/user/6
+GET http://localhost:3000/auth/user/1
 
 ### Find a user that does not exist
 GET http://localhost:3000/auth/user/1000000
