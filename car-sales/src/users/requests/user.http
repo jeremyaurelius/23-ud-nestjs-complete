@@ -7,6 +7,9 @@ GET http://localhost:3000/auth/user/1
 ### Find a user that does not exist
 GET http://localhost:3000/auth/user/1000000
 
+### Find a particular user's contact details with a given ID
+GET http://localhost:3000/auth/user/contact/1
+
 ### Find user by email
 GET http://localhost:3000/auth/user?email=jeremybearemy@example.com
 
