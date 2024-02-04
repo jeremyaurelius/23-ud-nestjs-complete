@@ -1,6 +1,9 @@
 ### Who am I
 GET http://localhost:3000/auth/whoami
 
+### Who am I 2
+GET http://localhost:3000/auth/whoami2
+
 ### Find a particular user with a given ID
 GET http://localhost:3000/auth/user/1
 

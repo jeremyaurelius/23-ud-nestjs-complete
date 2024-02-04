@@ -1,3 +1,6 @@
+###
+GET http://localhost:3000/hello
+
 # ### Set a color property in session cookie
 # GET http://localhost:3000/auth/colors/red
 
