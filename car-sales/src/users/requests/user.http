@@ -1,0 +1,33 @@
+### Who am I
+GET http://localhost:3000/auth/whoami
+
+### Find a particular user with a given ID
+GET http://localhost:3000/auth/user/6
+
+### Find a user that does not exist
+GET http://localhost:3000/auth/user/1000000
+
+### Find user by email
+GET http://localhost:3000/auth/user?email=jeremybearemy@example.com
+
+### Find not existent users by email
+GET http://localhost:3000/auth/user?email=doesnotexist@example.com
+
+### Delete user
+DELETE http://localhost:3000/auth/user/1
+
+### Update user
+PATCH http://localhost:3000/auth/user/2
+content-type: application/json
+
+{
+  "email": "jeremybearemy2updated@example.com"
+}
+
+### Update user
+PATCH http://localhost:3000/auth/user/2
+content-type: application/json
+
+{
+  "password": "test1234"
+}

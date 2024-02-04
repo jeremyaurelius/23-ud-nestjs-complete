@@ -11,6 +11,7 @@ export class SerializeInterceptor implements NestInterceptor {
     // run before request is handled by request handler
     return next.handle().pipe(
       map((data: any) => {
+        console.log('serialise data', data);
         // run something before the response is sent
         // console.log('interceptor data', data);
         return plainToClass(UserDto, data, {

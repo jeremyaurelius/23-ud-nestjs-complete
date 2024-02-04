@@ -1,0 +1,26 @@
+### Sign in with correct credentials
+POST http://localhost:3000/auth/sign-in
+content-type: application/json
+
+{
+  "email": "jeremybearemy@example.com",
+  "password": "test123"
+}
+
+### Sign in with incorrect password
+POST http://localhost:3000/auth/sign-in
+content-type: application/json
+
+{
+  "email": "jeremybearemy@example.com",
+  "password": "invalidpassword"
+}
+
+### Sign in with incorrect email
+POST http://localhost:3000/auth/sign-in
+content-type: application/json
+
+{
+  "email": "nonexistent@example.com",
+  "password": "test123"
+}

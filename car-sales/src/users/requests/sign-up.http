@@ -1,0 +1,43 @@
+### Create a new user
+POST http://localhost:3000/auth/sign-up
+content-type: application/json
+
+{
+  "email": "jeremybearemy@example.com",
+  "password": "test123"
+}
+
+### Create a new user with invalid email
+POST http://localhost:3000/auth/sign-up
+content-type: application/json
+
+{
+  "email": "jeremybearemy",
+  "password": "test123"
+}
+
+### Create a new user with incomplete fields
+POST http://localhost:3000/auth/sign-up
+content-type: application/json
+
+{
+  "email": "jeremybearemy@example.com"
+}
+
+### Create a new user with incomplete fields
+POST http://localhost:3000/auth/sign-up
+content-type: application/json
+
+{
+  "password": "test123"
+}
+
+### Create a new user with extraneous properties
+POST http://localhost:3000/auth/sign-up
+content-type: application/json
+
+{
+  "email": "jeremybearemy@example.com",
+  "password": "test123",
+  "additional": "1234"
+}
